@@ -66,6 +66,7 @@ class ElasticSearchOperations:
                 self.__es = OpenSearch([add_host], timeout=self.__timeout, max_retries=2)
                 self.__bulk_fn = opensearch_bulk
         except Exception as err:
+            logger.error(f'Failed to connect to {self.__server_type} at {self.__es_host}:{self.__es_port}: {err}')
             self.__es = None
 
     def __elasticsearch_get_index_hits(self, index: str, uuid: str = '', workload: str = '', fast_check: bool = False,
@@ -135,13 +136,12 @@ class ElasticSearchOperations:
         raise ElasticSearchDataNotUploaded
 
     @typechecked()
-    def upload_to_elasticsearch(self, index: str, data: dict, doc_type: str = '_doc', es_add_items: dict = None,
+    def upload_to_elasticsearch(self, index: str, data: dict, es_add_items: dict = None,
                                 **kwargs):
         """
         This method is upload json data into elasticsearch
         :param index: index name to be stored in elasticsearch
         :param data: data must be in dictionary i.e. {'key': 'value'}
-        :param doc_type:
         :param es_add_items:
         :return:
         """
@@ -393,7 +393,7 @@ class ElasticSearchOperations:
             if result_agg:
                 return response.get('aggregations')
             else:
-                return response.get('hits', {}).get('hits', {})
+                return response.get('hits', {}).get('hits', [])
         except Exception as err:
             logger.error(err)
             raise err
