@@ -2,7 +2,7 @@ import logging
 import os
 from datetime import datetime, timezone
 
-from opensearchpy import OpenSearch
+from elasticsearch import Elasticsearch
 
 
 class ESOperations:
@@ -11,10 +11,11 @@ class ESOperations:
     """
 
     ES_INDEX = "cloudsensei"
+    ES_DOC = '_doc'
 
     def __init__(self):
         self.__es_server = os.environ.get('ES_SERVER')
-        self.__es = OpenSearch(self.__es_server)
+        self.__es = Elasticsearch(self.__es_server)
 
     def upload_to_es(self, data: dict, **kwargs):
         """
@@ -25,7 +26,7 @@ class ESOperations:
             data['timestamp'] = datetime.now(tz=timezone.utc)  # datetime.now()
         # Upload data to elastic search server
         try:
-            self.__es.index(index=self.ES_INDEX, body=data, **kwargs)
+            self.__es.index(index=self.ES_INDEX, doc_type=self.ES_DOC, body=data, **kwargs)
             return True
         except Exception as err:
             raise err
