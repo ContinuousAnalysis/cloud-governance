@@ -7,13 +7,13 @@ pipeline {
         }
     }
     environment {
-        QUAY_CLOUD_GOVERNANCE_REPOSITORY = credentials('QUAY_CLOUD_GOVERNANCE_REPOSITORY')
+        QUAY_CLOUD_GOVERNANCE_REPOSITORY = credentials('PRAGCHAU_QUAY_CLOUD_GOVERNANCE_REPOSITORY')
         AZURE_CLIENT_SECRET = credentials('cloud-governance-azure-client-secret')
         AZURE_TENANT_ID = credentials('cloud-governance-azure-tenant-id')
         AZURE_ACCOUNT_ID = credentials('cloud-governance-azure-account-id')
         AZURE_CLIENT_ID = credentials('cloud-governance-azure-client-id')
-        ES_HOST = credentials('cloud-governance-es-host')
-        ES_PORT = credentials('cloud-governance-es-port')
+        ES_HOST = credentials('temp_cloud-governance-es-host')
+        ES_PORT = credentials('temp_cloud-governance-es-port')
         ES_USER = credentials('cloud-governance-es-user')
         ES_PASSWORD = credentials('cloud-governance-es-password')
         COST_SPREADSHEET_ID = credentials('cloud-governance-cost-spreadsheet-id')
