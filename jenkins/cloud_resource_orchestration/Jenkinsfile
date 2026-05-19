@@ -7,15 +7,15 @@ pipeline {
         }
     }
     environment {
-        QUAY_CLOUD_GOVERNANCE_REPOSITORY = credentials('PRAGCHAU_QUAY_CLOUD_GOVERNANCE_REPOSITORY')
+        QUAY_CLOUD_GOVERNANCE_REPOSITORY = credentials('QUAY_CLOUD_GOVERNANCE_REPOSITORY')
         AWS_ACCESS_KEY_ID_DELETE_PERF = credentials('cloud-governance-aws-access-key-id-delete-perf')
         AWS_SECRET_ACCESS_KEY_DELETE_PERF = credentials('cloud-governance-aws-secret-access-key-delete-perf')
         AWS_ACCESS_KEY_ID_DELETE_PSAP = credentials('cloud-governance-aws-access-key-id-delete-psap')
         AWS_SECRET_ACCESS_KEY_DELETE_PSAP = credentials('cloud-governance-aws-secret-access-key-delete-psap')
         AWS_ACCESS_KEY_ID_DELETE_PERF_SCALE = credentials('cloud-governance-aws-access-key-id-delete-perf-scale')
         AWS_SECRET_ACCESS_KEY_DELETE_PERF_SCALE = credentials('cloud-governance-aws-secret-access-key-delete-perf-scale')
-        ES_HOST = credentials('temp_cloud-governance-es-host')
-        ES_PORT = credentials('temp_cloud-governance-es-port')
+        ES_HOST = credentials('cloud-governance-es-host')
+        ES_PORT = credentials('cloud-governance-es-port')
         ES_USER = credentials('cloud-governance-es-user')
         ES_PASSWORD = credentials('cloud-governance-es-password')
         CLOUD_GOVERNANCE_SPECIAL_USER_MAILS = credentials('cloud-governance-special-user-mails')
